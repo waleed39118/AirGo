@@ -2,9 +2,35 @@
 {% load static %}
 
 {% block content %}
-<div class="d-flex flex-column justify-content-center align-items-center" style="height:80vh;">
-    <h1 class="mb-4">Welcome to AirGo</h1>
-    <p class="mb-4">Please <a href="{% url 'login' %}">Login</a> to explore our flights and destinations.</p>
-    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+<div class="container mt-5">
+  <h2 class="mb-4">Welcome to AirGo</h2>
+
+  {% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}!</p>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    <a href="{% url 'home' %}" class="btn btn-primary">Go to Flights</a>
+  {% else %}
+  <div class="row">
+    <!-- Login form -->
+    <div class="col-md-6">
+      <h3>Login</h3>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form_login.as_p }}
+        <button type="submit" class="btn btn-success">Login</button>
+      </form>
+    </div>
+
+    <!-- Signup form -->
+    <div class="col-md-6">
+      <h3>Sign Up</h3>
+      <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ form_signup.as_p }}
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+      </form>
+    </div>
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
