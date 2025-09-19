@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center" style="height:80vh;">
+    <h1 class="mb-4">Welcome to AirGo</h1>
+    <p class="mb-4">Please <a href="{% url 'login' %}">Login</a> to explore our flights and destinations.</p>
+    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>User Profile</h2>
+<form method="post" class="mt-4">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label>Username</label>
+    <input type="text" name="username" class="form-control" value="{{ user.username }}" required>
+  </div>
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+  </div>
+  <div class="mb-3">
+    <label>First Name</label>
+    <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}">
+  </div>
+  <div class="mb-3">
+    <label>Last Name</label>
+    <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}">
+  </div>
+  <button class="btn btn-success" type="submit">Update Profile</button>
+</form>
+<a href="{% url 'logout' %}" class="btn btn-secondary mt-3">Logout</a>
+{% endblock %}

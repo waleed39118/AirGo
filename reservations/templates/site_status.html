@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Site Status</h2>
+<button id="checkStatusBtn" class="btn btn-info mb-3">Check Server Status</button>
+<div id="statusContainer">
+  <p>Press the button to check the server status.</p>
+</div>
+
+<script>
+document.getElementById('checkStatusBtn').onclick = function() {
+  fetch('/status/')  
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('statusContainer').innerHTML = `
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Status:</strong> ${data.status}</li>
+          <li class="list-group-item"><strong>Server Time:</strong> ${data.timestamp}</li>
+          <li class="list-group-item"><strong>Server Uptime (sec):</strong> ${data.server_uptime_seconds}</li>
+          <li class="list-group-item"><strong>Python Version:</strong> ${data.python_version}</li>
+        </ul>
+      `;
+    });
+};
+</script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="text-align:center;">
+<h3>Weather in {{ city }}</h3>
+{% if weather %}
+    <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="{{ weather.description }}">
+    <p>Temperature: {{ weather.temperature }}°C</p>
+    <p>Description: {{ weather.description }}</p>
+{% else %}
+    <p>Weather data not available.</p>
+{% endif %}
+</div>
+{% endblock %}

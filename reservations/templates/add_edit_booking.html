@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Book Flight: {{ flight.flight_number }}</h2>
+<form method="post" class="mt-4">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label>Start Date</label>
+    <input type="date" name="start_date" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>End Date</label>
+    <input type="date" name="end_date" class="form-control" required>
+  </div>
+  <button class="btn btn-success" type="submit">Confirm Booking</button>
+</form>
+{% endblock %}
